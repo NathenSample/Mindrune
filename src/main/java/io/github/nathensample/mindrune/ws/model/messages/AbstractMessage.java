@@ -1,9 +1,6 @@
 package io.github.nathensample.mindrune.ws.model.messages;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import io.github.nathensample.mindrune.ws.model.messages.in.IdentifyMessage;
 import io.github.nathensample.mindrune.ws.model.messages.out.CommandMessage;
 import io.github.nathensample.mindrune.ws.model.types.MessageType;
@@ -33,8 +30,10 @@ public abstract class AbstractMessage {
         this.clientId = clientId;
     }
 
+    @JsonIgnore
     public abstract MessageType getMessageType();
 
+    @JsonIgnore
     public final String getMessageId() {
         return messageId;
     }
