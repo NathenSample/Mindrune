@@ -1,0 +1,52 @@
+plugins {
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+	id 'application'
+}
+
+mainClassName = 'io.github.nathensample.mindrune.Application'
+
+group 'io.github.nathensample'
+version '1.1.1'
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+	implementation  group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.12.1'
+	implementation  group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.2.4'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '3.2.4'
+	implementation 'com.google.api-client:google-api-client:1.34.1'
+	implementation 'com.google.oauth-client:google-oauth-client-jetty:1.34.1'
+	implementation 'com.google.apis:google-api-services-sheets:v4-rev612-1.25.0'
+	implementation 'com.google.http-client:google-http-client-jackson2:1.43.3'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	compileOnly 'org.projectlombok:lombok'
+
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation platform('org.junit:junit-bom:5.11.1')
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testImplementation 'org.mockito:mockito-core:5.15.2'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.15.2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+test {
+	systemProperty "spring.profiles.active", "dev"  // Set the active profile for tests
+}
