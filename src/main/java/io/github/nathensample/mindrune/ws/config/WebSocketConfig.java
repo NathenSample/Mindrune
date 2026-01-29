@@ -2,6 +2,7 @@ package io.github.nathensample.mindrune.ws.config;
 
 
 import io.github.nathensample.mindrune.ws.handler.WebSocketHandler;
+import lombok.RequiredArgsConstructor;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +12,10 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 
 @Configuration
 @EnableWebSocket
+@RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    @Autowired
-    private WebSocketHandler webSocketHandler;
+    private final WebSocketHandler webSocketHandler;
 
     @Override
     public void registerWebSocketHandlers(final WebSocketHandlerRegistry registry) {
